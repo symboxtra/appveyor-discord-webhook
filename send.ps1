@@ -49,9 +49,11 @@ else {
 
 if ($env:APPVEYOR_PULL_REQUEST_NUMBER) {
   $URL="https://github.com/$env:APPVEYOR_REPO_NAME/pull/$env:APPVEYOR_PULL_REQUEST_NUMBER"
+  $REPO_NAME=$env:APPVEYOR_REPO_NAME
 }
 else {
-  $URL=""
+  $URL="https://github.com/$env:APPVEYOR_REPO_NAME/commit/$env:APPVEYOR_REPO_COMMIT"
+  $REPO_NAME=$env:APPVEYOR_REPO_NAME -creplace '^[^/]*/', '' # Remove repo owner: symboxtra/project -> project
 }
 
 $TIMESTAMP="$(Get-Date -format s)Z"
@@ -61,7 +63,7 @@ $WEBHOOK_DATA="{
   ""embeds"": [ {
     ""color"": $EMBED_COLOR,
     ""author"": {
-      ""name"": ""Job #$env:APPVEYOR_JOB_NUMBER (Build #$env:APPVEYOR_BUILD_NUMBER) $STATUS_MESSAGE - $env:APPVEYOR_REPO_NAME"",
+      ""name"": ""#$env:APPVEYOR_BUILD_NUMBER - $REPO_NAME - Windows - $STATUS_MESSAGE"",
       ""url"": ""https://ci.appveyor.com/project/$env:APPVEYOR_ACCOUNT_NAME/$env:APPVEYOR_PROJECT_SLUG/build/$env:APPVEYOR_BUILD_VERSION"",
       ""icon_url"": ""$AVATAR""
     },
