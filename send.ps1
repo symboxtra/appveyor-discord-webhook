@@ -40,6 +40,12 @@ $COMMITTER_NAME="$(git log -1 "$env:APPVEYOR_REPO_COMMIT" --pretty="%cN")"
 $COMMIT_SUBJECT="$(git log -1 "$env:APPVEYOR_REPO_COMMIT" --pretty="%s")"
 $COMMIT_MESSAGE="$(git log -1 "$env:APPVEYOR_REPO_COMMIT" --pretty="%b")"
 
+if ($COMMIT_MESSAGE -like 'Co-author*') {
+  $COMMIT_MESSAGE=$COMMIT_MESSAGE.Split("<")
+  $COMMIT_MESSAGE=$COMMIT_MESSAGE.Split(" ")
+  $COMMIT_MESSAGE=$COMMIT_MESSAGE[2]
+}
+
 if ($AUTHOR_NAME -eq $COMMITTER_NAME) {
   $CREDITS="$AUTHOR_NAME authored & committed"
 }
