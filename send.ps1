@@ -5,7 +5,7 @@ $STATUS=$args[0]
 $WEBHOOK_URL=$args[1]
 $epoch=$(Get-Date -Date "01/01/1970")
 $date=$(Get-Date)
-$CURRENT_TIME=$([math]::Round((New-TimeSpan -Start $date1 -End $date2).TotalSeconds))
+$CURRENT_TIME=$([math]::Round((New-TimeSpan -Start $epoch -End $date).TotalSeconds))
 
 if (!$WEBHOOK_URL) {
   Write-Output "WARNING!!"
