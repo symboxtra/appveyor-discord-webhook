@@ -46,7 +46,7 @@ $COMMIT_TIME="$(git log -1 "$env:APPVEYOR_REPO_COMMIT" --pretty="%ct")"
 
 $BUILD_TIME=$CURRENT_TIME-$COMMIT_TIME
 $time_stamp=$([timespan]::fromseconds($BUILD_TIME))
-$DISPLAY_TIME=$("{0:mm:ss}" -f ([datetime]$ts.Ticks))
+$DISPLAY_TIME=$("{0:mm:ss}" -f ([datetime]$time_stamp.Ticks))
 
 if ($COMMIT_MESSAGE -like 'Co-author*') {
   $COMMIT_MESSAGE=$COMMIT_MESSAGE.Split("<")
