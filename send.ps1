@@ -77,7 +77,7 @@ $WEBHOOK_DATA="{
   ""embeds"": [ {
     ""color"": $EMBED_COLOR,
     ""author"": {
-      ""name"": ""#$env:APPVEYOR_BUILD_NUMBER - $REPO_NAME - Windows - $STATUS_MESSAGE ($DISPLAY_TIME)"",
+      ""name"": ""#$env:APPVEYOR_BUILD_NUMBER - $REPO_NAME - Windows - $STATUS_MESSAGE"",
       ""url"": ""https://ci.appveyor.com/project/$env:APPVEYOR_ACCOUNT_NAME/$env:APPVEYOR_PROJECT_SLUG/build/$env:APPVEYOR_BUILD_VERSION"",
       ""icon_url"": ""$AVATAR""
     },
@@ -96,7 +96,7 @@ $WEBHOOK_DATA="{
         ""inline"": true
       }
     ],
-    ""timestamp"": ""$TIMESTAMP""
+    ""timestamp"": ""$TIMESTAMP ($DISPLAY_TIME)""
   } ]
 }"
 
