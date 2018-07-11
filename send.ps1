@@ -3,6 +3,9 @@
 
 $STATUS=$args[0]
 $WEBHOOK_URL=$args[1]
+$epoch=$(Get-Date -Date "01/01/1970")
+$date=$(Get-Date)
+$CURRENT_TIME=$([math]::Round((New-TimeSpan -Start $date1 -End $date2).TotalSeconds))
 
 if (!$WEBHOOK_URL) {
   Write-Output "WARNING!!"
@@ -39,6 +42,11 @@ $AUTHOR_NAME="$(git log -1 "$env:APPVEYOR_REPO_COMMIT" --pretty="%aN")"
 $COMMITTER_NAME="$(git log -1 "$env:APPVEYOR_REPO_COMMIT" --pretty="%cN")"
 $COMMIT_SUBJECT="$(git log -1 "$env:APPVEYOR_REPO_COMMIT" --pretty="%s")"
 $COMMIT_MESSAGE="$(git log -1 "$env:APPVEYOR_REPO_COMMIT" --pretty="%b")"
+$COMMIT_TIME="$(git log -1 "$env:APPVEYOR_REPO_COMMIT" --pretty="%ct")"
+
+$BUILD_TIME=$CURRENT_TIME-$COMMIT_TIME
+$time_stamp=$([timespan]::fromseconds($BUILD_TIME))
+$DISPLAY_TIME=$("{0:HH:mm:ss}" -f ([datetime]$ts.Ticks))
 
 if ($COMMIT_MESSAGE -like 'Co-author*') {
   $COMMIT_MESSAGE=$COMMIT_MESSAGE.Split("<")
@@ -69,7 +77,7 @@ $WEBHOOK_DATA="{
   ""embeds"": [ {
     ""color"": $EMBED_COLOR,
     ""author"": {
-      ""name"": ""#$env:APPVEYOR_BUILD_NUMBER - $REPO_NAME - Windows - $STATUS_MESSAGE"",
+      ""name"": ""#$env:APPVEYOR_BUILD_NUMBER - $REPO_NAME - Windows - $STATUS_MESSAGE ($DISPLAY_TIME)"",
       ""url"": ""https://ci.appveyor.com/project/$env:APPVEYOR_ACCOUNT_NAME/$env:APPVEYOR_PROJECT_SLUG/build/$env:APPVEYOR_BUILD_VERSION"",
       ""icon_url"": ""$AVATAR""
     },
