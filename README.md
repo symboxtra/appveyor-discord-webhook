@@ -44,4 +44,5 @@ please consider opening an issue and I'll fix it ASAP.
 -  If you want to improve the scripts, feel free to open a pull request.
 
 ### See Also
--  [Travis CI -> Discord Webhook](https://github.com/k3rn31p4nic/travis-ci-discord-webhook)
+-  [Travis CI -> Discord Webhook](https://github.com/symboxtra/travis-ci-discord-webhook)
+-  [Jenkins -> Discord Webhook](https://github.com/symboxtra/travis-ci-discord-webhook)
