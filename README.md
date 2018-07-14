@@ -45,4 +45,4 @@ please consider opening an issue and I'll fix it ASAP.
 
 ### See Also
 -  [Travis CI -> Discord Webhook](https://github.com/symboxtra/travis-ci-discord-webhook)
--  [Jenkins -> Discord Webhook](https://github.com/symboxtra/travis-ci-discord-webhook)
+-  [Jenkins -> Discord Webhook](https://github.com/symboxtra/jenkins-discord-webhook)
