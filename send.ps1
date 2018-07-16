@@ -90,7 +90,9 @@ if ($COMMIT_SUBJECT -match 'Merge \w{40}\b into \w{40}\b')
         $HASH=$MATCH.Value
         $BRANCH_NAME="$(git name-rev "$HASH" --name-only)"
         if ($BRANCH_NAME)
+        {
             $COMMIT_SUBJECT="$COMMIT_SUBJECT" -replace "$HASH", "$BRANCH_NAME"
+        }
     }
 }
 
