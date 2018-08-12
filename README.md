@@ -1,3 +1,10 @@
+# This project is archived... #
+Please see [universal-ci-discord-webhook](https://github.com/symboxtra/universal-ci-discord-webhook) for the most current version and improved functionality.
+
+
+
+
+
 # AppVeyor 🡒 Discord Webhook
 
 If you are looking for a way to get build (success/fail) status reports from
